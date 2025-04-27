@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # File paths
-log_file = '/home/sichongjie_sub3/nano_gpt_wzq/out/training_gpt2-124M.log'
-output_file = '/home/sichongjie_sub3/nano_gpt_wzq/out/loss_plot.png'
+log_file = '/data_hdd/users/sichongjie_sub3/cache/out/moba-efficient-gpt2-124M/training_gpt2.log'
+output_file = '/home/sichongjie_sub3/nano_gpt_wzq/results/training_gpt2-124M_loss.png'
 
 # Lists to store data
 steps = []
@@ -37,7 +37,7 @@ plt.plot(steps, val_losses, 'r--', label='Validation Loss', marker='x', markersi
 # Add labels and title
 plt.xlabel('Training Steps')
 plt.ylabel('Loss')
-plt.title('Training and Validation Loss with Flash Attention')
+plt.title('Training and Validation Loss with Modified MoBA')
 plt.grid(True, linestyle='--', alpha=0.7)
 plt.legend()
 
@@ -49,13 +49,13 @@ plt.annotate(f'Min Train: {train_losses[min_train_idx]:.4f} (step {steps[min_tra
              xy=(steps[min_train_idx], train_losses[min_train_idx]),
              xytext=(steps[min_train_idx]+200, train_losses[min_train_idx]+0.3),
              arrowprops=dict(facecolor='blue', shrink=0.05, width=1.5),
-             fontsize=9)
+             fontsize=5)
 
 plt.annotate(f'Min Val: {val_losses[min_val_idx]:.4f} (step {steps[min_val_idx]})',
              xy=(steps[min_val_idx], val_losses[min_val_idx]),
              xytext=(steps[min_val_idx]-500, val_losses[min_val_idx]+0.4),
              arrowprops=dict(facecolor='red', shrink=0.05, width=1.5),
-             fontsize=9)
+             fontsize=5)
 
 # Save figure
 plt.tight_layout()
